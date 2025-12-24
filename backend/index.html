@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Creator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        button {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .posts-container {
+            margin-top: 20px;
+        }
+        
+        .post-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+   
+    
+    <div id="postsContainer" class="posts-container">
+        <!-- Posts will be displayed here -->
+    </div>
+
+    <script>
+        // Store the API endpoint
+        const API_URL = 'http://localhost:8000/';
+
+        // Function to create a new post
+     
+        // Function to view a single post
+
+        /*
+           async function createPost(event) {
+            event.preventDefault();
+            
+            // Get form data
+            const title = document.getElementById('title').value;
+            const content = document.getElementById('content').value;
+            
+            // Create the post object
+            const postData = {
+                title: title,
+                body: content
+            };
+            
+            try {
+                // Send POST request
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(postData)
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                // Clear the form
+                document.getElementById('postForm').reset();
+                
+                // Show success message
+                alert('Post created successfully!');
+                
+                // Refresh the posts display
+                fetchPosts();
+                
+            } catch (error) {
+                console.error('Error:', error);
+             
+            }
+        }
+        async function element() {
+            try {
+            const response = await fetch(API_URL);
+            const posts = await response.json();
+            
+            posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.className = 'post-card';
+                postElement.innerHTML = `
+                <h3>${post.title}</h3>  
+                <p>${post.body}</p>
+                <small>Created: ${new Date(post.created_at).toLocaleString()}</small>
+                `;
+                document.body.appendChild(postElement);
+            });
+            } catch (error) {
+            console.error('Error:', error);
+            alert('Error fetching post: ' + error.message);
+            }
+        }
+    */
+        // Function to fetch and display posts
+        async function fetchPosts() {
+            try {
+                const response = await fetch(API_URL);
+                const posts = await response.json();
+                document.getElementsByTagName('body')[0].style.display = 'block';
+                console.log(posts)
+                const container = document.getElementById('postsContainer');
+                container.innerHTML = ''; // Clear existing posts
+                
+                posts.forEach(post => {const postElement = document.createElement('div');
+                    
+                    postElement.className = 'post-card';
+                    postElement.innerHTML = `
+
+           
+                     <h1> ID : ${post.id}</h1>
+                        <h3>${post.name_of_the_country}</h3>  
+                        <p>${post.praragraph_that_represents_the_country}</p>
+                        <h3> Why to visit?</h3>
+                        <p>${post.paragraph_of_the_pros}</p>
+                        <h3> What is the problem with ${post.name_of_the_country}?</h3>
+                        <p>${post.paragraph_of_the_cons }</p>
+                        <a class="link" href='${post.link}'>The official site</a>
+                        <br>
+                        <small>Created: ${new Date(post.created_at).toLocaleString()}</small><br>
+                        <br>
+
+                        <button onclick="viewPost(${post.id})">View</button>
+                    `;
+                    container.appendChild(postElement);
+                });
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Error fetching posts: ' + error.message);
+            }
+        }
+        
+        // Add event listeners
+        async function fetch_country(id){
+            const response = await fetch(API_URL+'views/'+id);
+            const country = await response.json();
+            document.getElementsByTagName('body')[0].innerHTML = `
+                     <button onclick=fetch_continent(${country.continent})> Return </button>
+                <h1>${country.name_of_the_country}</h1>
+                <p>${country.praragraph_that_represents_the_country}</p>
+                <h3> Why to visit?</h3>
+                <p>${country.paragraph_of_the_pros}</p>
+                <h3> What is the problem with ${country.name_of_the_country}?</h3>
+                <p>${country.paragraph_of_the_cons }</p>
+                <a class="link" href='${country.link}'>The official site</a>
+                 `;
+        }
+        // Initial fetch of posts
+        // Function to fetch and display a continent and its countries
+        async function fetch_continent(id){
+            const response = await fetch(API_URL+'continent_listing/'+id);
+            const continent = await response.json();
+            document.getElementsByTagName('body')[0].innerHTML = `
+            <button onclick='fetch_continents()'>Return</button>
+                <h1>${continent.name}</h1>
+                <ul>
+                    ${continent.posts.map(country => `<li onclick='fetch_country(${country.id})'>${country.name_of_the_country}</li>`).join('')}
+                </ul>           
+            `;
+        }
+        async function fetch_continents(){
+            const response = await fetch(API_URL+'continent_listing/');
+            const continents = await response.json();
+            document.getElementsByTagName('body')[0].innerHTML = `
+                <h1>Continents</h1>
+                <ul>
+                    ${continents.map(continent => `<li onclick='fetch_continent(${continent.id})'>${continent.name}</li>`).join('')}
+                </ul>           
+            `;
+        }
+
+        fetch_continents()
+    </script>
+</body>
+</html>

@@ -1,0 +1,108 @@
+<app-navbar></app-navbar>
+<div class="cont">
+		<a  href='countries/{{country.continent}}' class="btn btn-success">
+		Return to Countries
+	</a>
+ <div id="hj"> 
+ 	<h1 id="country-name" >
+  	{{country.name_of_the_country}}
+  </h1>
+</div>
+  <div class="images" data-aos="zoom-in">
+    <img src="http://localhost:8000/{{country.image}}" alt="Image 1" width="200">
+    <img src="http://localhost:8000/{{country.image_2}}" alt="Image 2" width="200">
+    <img src="http://localhost:8000/{{country.image_3	}}" alt="Image 3" width="200">
+  </div>
+
+  <div class="home-heading-animation" data-aos="fade-left">
+  	  <span class="home-text-wrapper">
+    <p class="description home-letters" [innerHtml]="country.praragraph_that_represents_the_country">
+</p>  </span>
+
+
+    			
+  </div>
+
+  <div class="pros-cons">
+    <div  class="pros col-md-6 col-sm-12" data-aos="fade-right">
+
+
+
+<h3 class="ml2">Avantages</h3>
+
+
+      <ul id="Pros-list"   [innerHtml]="country.paragraph_of_the_pros">
+
+      </ul>
+    </div>
+
+    <div class="cons col-md-6 col-sm-12" data-aos="fade-left">
+<h3 class="ml3">Inconvenients</h3>
+      <ul [innerHtml]="country.paragraph_of_the_cons">
+       
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-bottom: 30vh;" class="link" data-aos="zoom-in-up">
+    <a [href]="country.link" >Lien vers le site officiel du pays</a>
+  </div>
+</div>
+
+<!--
+
+<div  class="container">
+
+	<div class="row">
+	<h1  data-aos="zoom-in-down" class="country-name">{{country.name_of_the_country}}</h1>
+
+		<div data-aos="flip-down" class="col-md-6 col-sm-12">
+
+			{{country.praragraph_that_represents_the_country}}
+
+		</div>
+		<div data-aos="flip-up" class="col-md-6 col-sm-12">
+			<img src="http://localhost:8000/{{country.image}}">
+</div>
+	</div>
+
+		<div class="row">
+
+	<div data-aos="zoom-in-right" class="col-lg-4 col-md-6 col-sm-12">
+			<img src="http://localhost:8000/{{country.image_2}}">
+</div>
+
+<div data-aos="zoom-in-down" class="col-lg-4 col-md-6 col-sm-12">
+			<img src="http://localhost:8000/{{country.image_3}}">
+</div>
+<div data-aos="zoom-in-left" class="col-lg-4 col-md-6 col-sm-12">
+			<img src="http://localhost:8000/{{country.image_4}}">
+</div>
+
+	</div>
+
+
+	<h3 class="titles">Pros and cons</h3>
+	<div class="row">
+
+		<div  data-aos="fade-right"  data-aos-duration="500"  class="col-md-6 col-sm-12">
+			<h6 class="titles">Pros:</h6>
+
+			<p [innerHtml]="country.paragraph_of_the_pros"></p>
+
+		</div>
+			<div data-aos="fade-left" data-aos-duration="500"  class="col-md-6 col-sm-12">
+			<h6 class="titles">Cons:</h6>
+			<p [innerHtml]="country.paragraph_of_the_cons"></p>
+
+		</div>
+	
+	</div>
+		
+
+
+
+
+	<a [href]="country.link" class="btn btn-outline-primary">See official website </a>
+</div>
+-->

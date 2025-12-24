@@ -1,0 +1,17 @@
+
+<app-navbar></app-navbar>
+    <div class="countries_page">
+    
+	<main id="123" class="container">
+        <section *ngFor='let continent of continents'  class="card" data-aos="fade-right">
+            <img src="http://localhost:8000/{{continent.image}}" alt="{{continent.name_of_the_country}} image">
+            <div>
+                <h3>	{{continent.name_of_the_country}}</h3>
+                <p>	{{text_truncate(continent.praragraph_that_represents_the_country,160,"...")}}</p>
+                <br>
+                <a  href="/countries/country/{{continent.id}}" class="butn">DIVE IN</a>
+            </div>
+        </section>
+      
+   </main>
+</div>

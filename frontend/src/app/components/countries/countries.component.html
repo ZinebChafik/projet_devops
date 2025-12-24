@@ -1,0 +1,78 @@
+
+<app-navbar></app-navbar>
+    <div class="countries_page">
+    <header class="main-header">
+ <h1 class="home-heading-animation">
+    <span class="home-text-wrapper  ml14" style="font-size:1em">
+      <span class="african ml12" style="text-transform: uppercase; text-decoration: underline">
+        {{name}}n</span>&nbsp;
+    <span class="countries_you">  COUNTRIES YOU</span>
+      <span class="should ml13" style="color: black">
+        SHOULD
+      </span>
+      <span class="Visit">      VISIT
+</span>
+    </span>
+  </h1>
+        <p style="font-size: 16px;" class="ml10">
+  <span class="text-wrapper">
+    <span class="letters">{{description}}</span>
+  </span>
+</p>
+<br>
+		<a style="cursor: pointer;" (click)="scrollTo('123')"class="icon-button">
+			<a  style="color: whitesmoke;"> scroll down </a><br>
+<i class="fa-solid fa-angles-down fa-bounce" style="color: #ffffff;margin-top: 20px;"></i>
+		</a>
+    </header>
+    
+	<main id="123" class="container">
+        <section *ngFor='let continent of continents'  class="card" data-aos="fade-right">
+            <img src="http://localhost:8000/{{continent.image}}" alt="{{continent.name_of_the_country}} image">
+            <div>
+                <h3>	{{continent.name_of_the_country}}</h3>
+                <p>	{{text_truncate(continent.praragraph_that_represents_the_country,160,"...")}}</p>
+                <br>
+                <a  href="/countries/country/{{continent.id}}" class="butn">DIVE IN</a>
+            </div>
+        </section>
+      
+   </main>
+</div>
+<!--
+
+
+
+<app-navbar></app-navbar>
+<div class="container">
+	<h1 class="country-name">{{name}}</h1>
+	<div class="row">
+		<div *ngFor='let continent of continents' class="col-sm-12 col-md-6 col-lg-4">
+				
+			<div class="card">
+	
+<img src="http://localhost:8000/{{continent.image}}">
+<div class="card-body">
+<div class="card-title">	
+	{{continent.name_of_the_country}}
+	<br>
+	{{text_truncate(continent.praragraph_that_represents_the_country,160,"...")}}
+</div>
+
+<p class="card-text">
+</p>
+<a href="http://localhost:4200/countries/country/{{continent.id}}">
+	<button class="btn btn-info"> View More</button>
+
+</a>
+
+</div>
+</div>
+		</div>
+
+	</div>
+
+
+
+</div>
+-->
