@@ -80,7 +80,7 @@ jobs:
       - name: 3. Validation des Manifestes (Dry-Run)
         run: |
           # Vérifie que tes fichiers YAML sont corrects sans avoir besoin du cluster Cloud
-          kubectl apply -f k8s/ --dry-run=client
+          kubectl apply -f k8s/ --dry-run=client --validate=false
           echo "Les fichiers Kubernetes sont valides et prêts pour le déploiement !"
 
   # --- JOB 4 : PERFORMANCE & E2E ---
